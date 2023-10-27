@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 
 % Set up data, if you need to add a package, go here
 \input{setup/packages.tex}
@@ -71,7 +71,7 @@ Ainul Habib\\
 \pagebreak
 
 \section*{Abstract}
-\begin{flushleft}
+
 Serverless computing technology provided the technological infrastructure that made the evolution of cloud computing from VM(s) and containerized services (CaaS) to just a “Function as a Service” (FaaS). This paradigm shift brought simplification of Microservices design, and abstraction for infrastructure and server overheads.
 
 Apart from all the goodies of Serverless, it provides a very real possibility for customers to get in a “locked-in” with a particular provider. 
@@ -91,11 +91,10 @@ We evaluate both platforms based on several criteria, such as performance, cost,
 
 Our results show that Azure Functions offers a more mature and integrated solution for Serverless computing, while Knative provides more flexibility and control for developers who want to leverage the power of Kubernetes.
     
-\end{flushleft}
+
 \pagebreak
 
-\section{Introduction}
-\begin{flushleft}
+\section*{Introduction}
 In recent years, the landscape of cloud-native application development has witnessed a significant transformation, driven by the need for enhanced scalability, rapid deployment, and cost efficiency. As organizations strive to deliver seamless digital experiences to their users, the utilization of Serverless computing and container-based solutions has emerged as a pivotal paradigm. Technologies that have gained prominence in this context are AWS Lambda, Azure Functions and Knative.
 
 Knative, an open-source project initiated by Google, offers a platform that abstracts away much of the complexities associated with deploying and managing containerized applications. It provides a set of building blocks for modern Serverless development, enabling developers to focus on code logic while benefiting from automatic scaling, event-driven architecture, and enhanced portability.
@@ -112,6 +111,7 @@ In the following chapters, we will look into the core concepts of Knative and Se
 \begin{quote}
     \textit{The promise of “increased agility, resilience, scalability, and developer productivity” and a desire for a “clear separation of concerns,” has fuelled interest in and adoption of Microservices, and even helped to popularize important practices, such as DevOps.}  ( \cite{KillaleaTom-2016} )
 \end{quote}
+\begin{flushleft}
 Microservices architecture facilitates the application’s capability to scale horizontally, better than any tightly coupled monolith, with the least amount of overhead. But there are other complicated issues related to distributed systems, which are more complicated requiring a complex and costly solution. They include issues like complex error handling, remote process calls, maintaining application logs, etc.
 
 Running infrastructure is always expensive and has its own management overheads. Adoption of Microservices in the application architecture will involve expansion of the existing organization’s IT infrastructures. The hidden cost related to distributed computing like networking, security, logs, etc. adds to the overall platform bill.
@@ -128,7 +128,7 @@ This is where Serverless offers a distinct advantage. Serverless technology stre
 Serverless computing's single-purpose APIs and web services make Microservices loosely coupled, scalable, and capable of delivering highly agile business solutions, easily and quickly.
 
 Using a Serverless framework developer’s energy and focus are more inclined towards business logic, and application flows and least towards any infrastructure or framework-related issues.
-
+\end{flushleft}
 \begin{quote}
    \textit{Market share for Serverless architecture is slated to increase by roughly 25.70 \% by the end of 2035, adding expected revenue of approx 193 billion. }  ( \cite{GMI_3796_2022} )
 \end{quote}
@@ -141,13 +141,12 @@ Using a Serverless framework developer’s energy and focus are more inclined to
     (Ref: \cite{GMI_3796_2022} )
 \end{figure}
 
-\end{flushleft}
 \pagebreak
 
 \section{Serverless Framework}
+\begin{flushleft}
 \subsection{FAAS: Function As A Service}
 \par
-\begin{flushleft}
 Function as a Service or FaaS is the basic building block of Serverless framework, (including AWS Lambda or Azure Function). 
 \begin{quote}
 \textit{Function as a service (FaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage application functionalities without the complexity of building and maintaining the infrastructure typically associated with developing and launching an app.} \\
@@ -283,17 +282,21 @@ Trigger is also responsible for Filtering of events before dispatching it to con
 In the easiest term, Knative Broker is an abstraction over event channel, subscription and triggers.
 
 \par
-The developers leverage for Knative API and Eventing platform to consume events in their functional code without writing any infrastructure code for consuming and parsing it. The API makes it possible to consume events in the standard “CloudEvent” format. 
-
+The developers leverage for Knative API and Eventing platform to consume events in their functional code without writing any infrastructure code for consuming and parsing it. The API makes it possible to consume events in the standard “CloudEvent” format.
+\end{flushleft}
+\pagebreak
 \section{Azure Function}
+\begin{flushleft}
 \textbf{Azure Function} is a Serverless offering by Microsoft. It allows developers to deploy their FaaS application on Azure Cloud using a Pay-as-you-go model. It followed all the features of Serverless, like the scale to zero, horizontal scalability, complete abstraction from the Platform, and eventing framework. It offers SDK and CLI to build and Deploy Serverless applications to the cloud, using various programming languages and frameworks like Java, .Net, NodeJS, etc.
 
 Azure Functions adopts the Azure Eventing framework to provide a comprehensive set of event-driven triggers and bindings. This binding connects Azure functions to other services without having to write extra code, providing the capability of Azure function to be asynchronous and event-driven.
 
 Azure Serverless Functions are grouped in \textit{Azure Function App}, which provide convenience in deployment, management, configuration, scalability and resource sharing, represented as one logical unit. 
 Azure deploys its Serverless code, runtime dependencies and configuration information under its \textit{Functional App}'s file storage. 
-
+\end{flushleft}
+\pagebreak
 \section{Azure Eventing}
+\begin{flushleft}
 Azure Functions leverages Azure eventing framework to create Event-Driven, Asynchronous Serverless Functions. The common use case for this feature is creating Workflow. 
 \begin{quote}
     \textit{Serverless is a great fit for event-driven architectures because each message acts an individual independent unit of work that can be processed Serverlessly.} \cite{ANDERSON_2024}
@@ -314,18 +317,22 @@ Azure Eventing framework supports event-sourcing and event-subscription. It cons
 
     \item Triggers and Broker: Knative provide a Broker which is an abstraction over underlying Event Channel and Event Triggers. Trigger is responsible for subscription and filtering of events, based on Cloud-Events attributes. Triggers configures a Sink, which is the destination endpoint for the filtered events. 
 \end{itemize}
-
+\end{flushleft}
+\pagebreak
 \section{Building and Deploying Serverless Function}
+
 \subsection{Building and Deploying in Azure}
+\begin{flushleft}
 Azure SDK and CLI provide templates for creating Azure Functions, giving the choice of programming language and event schema.
-
+\par
 Azure CLI archives and publishes the code to the File System under the Function App. The deployed Serverless function will remain in a dormant state (i.e. scaled to zero). The function performs a “Cold Start” when the event is called by Event Triggers.
-
-\textbf{Automation}
-\\
+\end{flushleft}
+\subsection{Build Automation}
+\begin{flushleft}
 There are various option to achieve automation in deployment of Azure Serverless Functions. Source Control integration connects the Function App to a GIT Repository, which will trigger deployment whenever updated code is committed and pushed. 
-
+\end{flushleft}
 \subsection{Build and Deployment in Knative}
+\begin{flushleft}
 The Knative CLI offers a build utility which uses the project name and the image registry name to construct and push a fully qualified container image, in OCI format, for the function.  
 The container image has the application's language specific runtime and functional code.
 \hfill\break
@@ -339,19 +346,18 @@ func build --registry docker.io/x00159358 \
            --verbose
 \end{verbatim}
 
-\textbf{Automation:}\\ Using GitHub workflow, the process is automated to build updated code and container image to docker repository. Refer ".workflow" folder in "Knative Code base" 
-\href{https://github.com/AINULX00159358/InvoiceMgrKnative/blob/main/.github/workflows/buildAndPush.yml}  
-{.github/workflows/buildAndPush.yaml}
-    
 \par
 Azure function do not create a containerized image. Azure CLI provide utility to package the artifacts and archive to Azure File Storage. Azure functional loads the application runtime and code into memory and executes it.
 
+\end{flushleft}
+\pagebreak
 \section{Cold Start}
 
 \quote{
 Defining Cold Start : \\
 \textit{This phenomenon is associated with a delay occurring in provision a runtime container to execute the functions.} \\ \cite{vahidinia2020cold}
 }
+\begin{flushleft}
 \par
 A cold start in Serverless refers to an increase in latency for Functions which haven’t been called recently. The Serverless framework will need to scale its instance from zero to one, before it can process the request. The cold start latency will be passed to request, which need to wait until an becomes fully ready to serve.
 \par
@@ -425,21 +431,25 @@ There are different distinct stages of execution leading to provisioning of the 
 \hfill\break
 In a worst-case scenario, when a cold start is used during a scale-from-zero, it is even possible to encounter client timeouts if the application doesn't respond in time.} \hfill\break ( \cite{Schweigert_Hadas_2022} )
 }
-
+\end{flushleft}
 \pagebreak
-
 \section{Mitigation to Cold startup}
+
 \subsection{ Azure Mitigation to Cold startup}
+\begin{flushleft}
 Azure handles this issue by keeping a pool of server in a "warm state", and drawing these servers as "workers" from pool. At any point of time, there are servers in the pool which are idle and pre-configured with Configuration and Functional runtime in a ready and running state. This feature is only available in Azure's Premium Plan.
-\newline
+\end{flushleft}
+
 When execution of function is triggered by incoming traffic:
-\begin{itemize}
-    \item Azure will allocate a pre-configured server from the pool. The server already has a functional runtime and configuration on it.
-    \item After allocation, the server re-configures the functional runtime based on the application requirements.
-    \item The Server now resets the Functional runtime and load any required extensions, using the \textit{function.json} file, specified the application manifest.
-    \item In the last stage the Function is now loaded into memory and executed. Time take to complete the last stage depends on language used, size of application etc. The function is now in a ready state serving request.
-\end{itemize}
-\hfill \break
+\newline
+Azure will allocate a pre-configured server from the pool. The server already has a functional runtime and configuration on it.
+\newline
+After allocation, the server re-configures the functional runtime based on the application requirements.
+\newline
+The Server now resets the Functional runtime and load any required extensions, using the \textit{function.json} file, specified the application manifest.
+\newline
+In the last stage the Function is now loaded into memory and executed. Time take to complete the last stage depends on language used, size of application etc. The function is now in a ready state serving request.
+\par
 \begin{flushright}    
 \begin{quote}
     \textit{"Making these 'pre-warmed sites' happen has given us measurable improvements on our cold start times. Things are now on the order of three to four times faster" 
@@ -456,6 +466,7 @@ When execution of function is triggered by incoming traffic:
 
 \pagebreak
 \subsection{ Knative Mitigation to Cold startup latency}
+\begin{flushleft}
 There are a number of ways to reduce Cold Stat-up Latency ( scale from zero latency).
 \newline
 \begin{itemize}
@@ -482,7 +493,7 @@ There are a number of ways to reduce Cold Stat-up Latency ( scale from zero late
     The deployment flag \textit{"scale-down-delay"}, causes increase the time window before Knative service decides to scale down the container.
     \item retention period for Scale to zero, increases minimum amount of time for the last pod to remain after a scale-to-zero decision has been made. This is controlled by the deployment flag \textit{"scale-to-zero-pod-retention-period"}.
 \end{itemize}
-
+\end{flushleft}
 \pagebreak
 \section{Autoscaling in Knative}
 Figure ~\ref{Knative Service Architecture} explains the full process of Autoscaling in Knative Serving Infrastructure.
@@ -495,7 +506,7 @@ Figure ~\ref{Knative Service Architecture} explains the full process of Autoscal
     \label{Knative Service Architecture}
 \end{figure}
 }
-
+\begin{flushleft}
 The interesting case is when scaling from Zero to One:
 \begin{itemize}
 \item  Traffic comes to Ingress Gateway, then to the Serverless Services.
@@ -506,6 +517,7 @@ The interesting case is when scaling from Zero to One:
 \item Once Pods are scaled above zero, Serverless Services updates the Route, disconnecting the Autoscaler. The traffic is now routed directly to Pod's service Proxy.
 \item The Knative Pod's sidecars and Envoy provide metrics which is now scared to Autoscaler directly, so that it can now decide to need to scale further based on incoming traffic.
 \end{itemize}
+\end{flushleft}
 \begin{quote}
     \begin{figure}[h]
     \centering
@@ -522,6 +534,7 @@ The interesting case is when scaling from Zero to One:
 \end{quote}
 \pagebreak
 \section{Deployment overhead of Knative}
+\begin{flushleft}
 Knative is offered over Kubernetes as set of CRDs and Services. Knative framework includes Knative Serving, Eventing. It will also need a Service Mesh. 
 These are the required components that must be deployed before deploying any Knative Serverless function.
 \begin{itemize}
@@ -545,9 +558,10 @@ The initial deployment of Knative frameworks and components offers complexity an
 Since the Knative framework requires many mandatory components and services to be deployed and running, it increased the physical hardware requirement of the Kubernetes Nodes to a minimum of “Standard D2 V2” (, which is 4 Core CPU and 14 GB Ram). 
 \par
 There are at-least 14 different core components, that must be deployed as part of Knative Serving and Eventing. The number of components that will be deployed as part of Knative, will further depend of type of \textit{Service Mesh} deployed. 
-
-
+\end{flushleft}
+\pagebreak
 \section{Developing and Event Driven Application}
+\begin{flushleft}
 Azure Eventing framework provide a production grade messaging service like Event-Grid and Event-Hubs, which supports easy integration to Azure Functions. Event Grid enables clients to publish and subscribe to messages over the MQTT, HTTP and other protocols. Azure Messaging Service also allows subscription and filtering of events and triggers to registered endpoint or Sink. The Sink can by Azure Serverless Function, Azure Webhook and Services. 
 \begin{figure}[h]
     \centering
@@ -561,9 +575,10 @@ Knative Eventing, already explained in section 5.3, provide the framework to dev
 Both Azure and Knative intend to isolate the functional code and configuration from messaging infrastructure. Knative provide event "Brokers", which is an abstraction over different messaging channels. 
 \hfill\break
 The Event Triggers in both Azure and Knative, subscribe to events, filters and routes it to the SINK. These subscription are externally configured without impacting the functional code. Messaging formats like Cloud-Events is used to keep the function code independent and portable. Filtering is done on Cloud-Event attributes. 
-
-
+\end{flushleft}
+\pagebreak
 \section{Workflow Orchestration }
+\begin{flushleft}
 Both Azure Function and Knative provide options to create a Workflow. These workflows are created using Eventing Framework which includes Event Source, Sink, Event Brokers, and Triggers. 
 \hfill\break
 The workflow orchestration consumes events from the message broker and triggers events which invokes Serverless function. The Serverless function receives event in CloudEvent format, it can return a transformed event back to the broker or channel for next stage of processing
@@ -576,8 +591,10 @@ There are 2 types of Workflows created in Knative
 \textbf{Parallel Workflow}, offered by Knative is a set of CRD that defines a set of branches. Each branch contains filters and subscriptions. Knative Workflows creates channels and Subscriptions under the hood. Both Filter and Subscription refer to a Knative Service Function.
 \hfill \break
 \textbf{Sequence Workflow}, offered by Knative is also a set of CRD that defines an order list of functions that must be invoked. Each step creates a filter and transforms events as they are passed. Knative Sequence workflows also create Channels and Subscriptions under the hood.
-
+\end{flushleft}
+\pagebreak
 \section{Simple Use-Case}
+\begin{flushleft}
 To demonstrate and test the features of Knative and Azure Function, a simple Use Case is created demonstrating an Event-Driven Microservices and Workflow.
 \hfill \break
 The use case starts with generation of an invoice by the clients, making a REST call to the Event Grid or Broker. The Application will consume the event and update the status of invoice as \textbf{NEW}.
@@ -618,9 +635,11 @@ A Test Code is deployed as Simple Kubernetes Pod, which will start by POSTing cl
 A Test Code is created to request generation of Invoice by making and REST calls to Knative Broker or Azure Event-Grid, using cloudevent schema. The test code is capable of sending Cloudevent at the required rate to simulate regression. 
 \par
 The Test code is packaged and pushed as Container Image, in OCI format, to the Docker repository. The Test application can be deployed as Kubernetes POD or Azure Container Application, with required arguments and properties.
+\end{flushleft}
 \pagebreak
 
 \section{Metrics}
+\begin{flushleft}
 Both Azure Functions and Knative provide default metrics which is collected and exposed by tools like Prometheus or Application Insight. The application code also provide E2E latency metrics, calculating time taken from generation of invoice to completion of payment. 
 \par
 Azure Portal provides options to view live metrics of Azure Functional App, as shown in figure ~\ref{azure_live_metrics}
@@ -705,42 +724,36 @@ The default setting for Autoscaler in Knative is "request concurrency", but for 
 \end{figure}
 \hfill\break
 Above figure (\ref{fig:Pod_Autoscaling_KnativeServing} ) shows how desired pod for Knative Function (invoicegenerator) increased from one to two, then stabilized back to 1 when traffic normalized. It increased to 2 again when RPS increased back to 140+.
+    
+\end{flushleft}
 \pagebreak
-
-
-
 \section{Analysis}
+
 \subsection{Deployment}
 Knative has an overhead of setting up the Kubernetes cluster, Service Mesh and its required Infrastructure. In production environment a reliable messaging infrastructure like Kafka must be deployed.
-
+\par
 Infrastructure cost of setting a proper Knative environment which can support high traffic bandwidth, messaging infrastructure and scalability of Serverless will require provisioning of large capacity nodes.
+\par
 
-\subsection{DevOps overhead}
+\subsection{Building as Container Image}
+
 The Knative code must be converted and pushed as docker image to the container registry. 
+\hfill\break
 Kubernetes POD will pull the container image from the registry for initial deployment. Cost of downloading the container image do not effect "Cold Start" as long as Image Pull Policy is set to "IfNotPresent". 
-
+\par
 In Azure the function build, do not convert the code to a docker image, instead it stores the function files in its file system. The Functional code and runtime is loaded to the Container during execution.
 
-\newpage
-
-\subsubsection{Azure's Hosting plan}
-Azure's Basic Serverless Hosting Plan is \textbf{"Consumption Plan"}. The Consumption plan scales application on traffic load factor. Customers are charged based on the compute resources utilized. The Compute instances for Functions hosts are dynamically added and removed based on the traffic load factor.
-
-Azure also provides different Hosting Options:
-\begin{itemize}
-    \item ASE : Azure Service Environment, which has high degree of isolation and scalability.
-    \item Azure Container Apps: Managed environment Azure Kubernetes Service (AKS) to run a containerized application using Serverless platform. 
-    \item Kubernetes : As isolated and dedicated environment, running on Kubernetes platform.   
-\end{itemize}
+\subsection{Azure's Hosting plan}
+Azure's Basic Serverless Hosting Plan is \textbf{"Consumption Plan"}. The Consumption plan scales application on traffic load factor. Customers are charged based on the compute resources utilized. The Compute instances for Functions hosts are dynamically added and removed based on the traffic load factor. Customers are also charged based on function execution.
+In production it is recommended to use \textbf{Premium Plan}, which provided larger physical resources, for higher scalability and traffic bandwidth
 
 \subsection{Serverless Costing}
 \subsubsection{Knative}
 \begin{quote}
-    \textit{Knative is best for applications that generate a variable number of trigger events that, over time, stay within established limits. While a single application can meet this requirement, it's more likely met by a combination of three or more applications whose triggers aren't synchronized.}
-    \\
-    ( \cite{Nolle_2020} )
+    \textit{Knative is best for applications that generate a variable number of trigger events that, over time, stay within established limits. While a single application can meet this requirement, it's more likely met by a combination of three or more applications whose triggers aren't synchronized.}  ( \cite{Nolle_2020} )
 \end{quote}
 \par
+\begin{flushleft}
 When there is a large number of Serverless function, any inflation in trigger caused by high or sudden bust of traffic may exponentially increase Serverless cost due to sudden increase in resource utilization and scaling of instances. This against the traditional container applications, which had fixed number of instances, keeping the processing cost constant.
 \par
 A proper mix of Knative application, can offer better Serverless performance at lower cost than public cloud. But wrong application or poorly sized resource pool can destroy the benefit.
@@ -769,18 +782,20 @@ Different pricing tires are available for Premium Plan customers, which provides
     \item \textbf{V5}: 32 vCPU,112 GB RAM \$4.256/hour
 \end{itemize}
 \par
-
-
-\section{Conclusion}
-Knative is a Cloud-Native alternative to traditional Serverless offering by public cloud providers.
-\hfill \break
-However, since it offered over Kubernetes and Service Mesh, cost of maintaining the cluster is expensive, both in terms of IT resources, maintenance and serviceability cost, requiring a team of dedicated SRE.
+\end{flushleft}
+\pagebreak
+\section*{Conclusion}
+\begin{flushleft}
+Knative is a Cloud-Native and Open-Source alternative to traditional Serverless offered by public cloud providers like Azure Functions.
 \par
-Thus, Knative is a better alternative, only for companies who already have Kubernetes and Service Mesh in their technology stack.
+Knative becomes a better alternative, for companies who have Kubernetes and Service Mesh in their technology stack, and has an active SRE team managing the Kubernetes Cluster. 
 \par
-Azure Functions will not offer a Cloud-Native solution. Companies can continue using Azure Function to avoid the overheads of maintaining the Kubernetes infrastructure, but will be vendor-locked towards Azure products.
+Azure Function becomes a choice when companies want to avoid the management overhead of Kubernetes Cluster and Service Mesh. In production, it is recommended to use the "Premium plan" to avoid cold start, which comes with added cost to the infrastructure. 
+\par
+To summarize, Both Knative and Azure Function are better solutions for Microservices requiring Serverless computing, but Knative offer is diluted by complexity of managing Kubernetes cluster. Azure Function keeps the customers "vendor locked", but are easily managed because Azure takes the responsibility of underlying infrastructure and resources.
 
 \end{flushleft}
+
 \pagebreak
 
 %prints bibliography from bibliography file.
