@@ -144,16 +144,20 @@ Using a Serverless framework developer’s energy and focus are more inclined to
 \pagebreak
 
 \section{Serverless Framework}
-\begin{flushleft}
 \subsection{FAAS: Function As A Service}
 \par
+\justifying
 Function as a Service or FaaS is the basic building block of Serverless framework, (including AWS Lambda or Azure Function). 
 \begin{quote}
-\textit{Function as a service (FaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage application functionalities without the complexity of building and maintaining the infrastructure typically associated with developing and launching an app.} \\
+\begin{flushleft}
+\textit{Function as a service (FaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage application functionalities without the complexity of building and maintaining the infrastructure typically associated with developing and launching an app.}
+\hfill \break
 (\cite{Wiki_function_as_a_service})
+\end{flushleft}
 \end{quote}
 
 \par
+\begin{flushleft}
 In FaaS, the cloud vendors are responsible for providing and managing the complexity of related application server, infrastructure, frameworks, security, and everything that the application needs to execute a specific function in an application. 
 
 \begin{quote}
@@ -304,11 +308,6 @@ Azure Functions leverages Azure eventing framework to create Event-Driven, Async
 
 Azure Eventing framework supports event-sourcing and event-subscription. It consumes events from the Eventing Channel, triggers, and routes it to the Functional instances. If the instance is scaled to Zero, a new instance is started. Azure Serverless framework abstracts all infrastructure and platform complexity from the code, making the function API consume CloudEvent formatted data. The configuration also allows the Azure function to push data back to the Event Channel.
 
-\begin{quote}
-    \textit{CloudEvents, an industry initiative that members of the CNCF Serverless Working Group contribute to, provides a consistent set of metadata to make events easier to work with for publishers, middleware, subscribers, and applications.}
-    \newline ( \cite{cncf_to_host_cloudevents_in_the_sandbox_2023} )
-\end{quote}
-
 \subsubsection{Three Patterns of Knative Eventing}
 \begin{itemize}
     \item Source To Sink: It is a very basic connection between the Event Source to service that receives the event unconditionally (or SINK). There is no support for filtering, queuing, etc.
@@ -317,6 +316,60 @@ Azure Eventing framework supports event-sourcing and event-subscription. It cons
 
     \item Triggers and Broker: Knative provide a Broker which is an abstraction over underlying Event Channel and Event Triggers. Trigger is responsible for subscription and filtering of events, based on Cloud-Events attributes. Triggers configures a Sink, which is the destination endpoint for the filtered events. 
 \end{itemize}
+\end{flushleft}
+
+\section{CloudEvents}
+\begin{flushleft}
+CloudEvents is a common data format or schema to defining "events". It aims to provide interoperability across various cloud platform and services. It is an Open-source and maintained by CNCF Serverless working Group.
+\par
+\begin{quote}
+    \textit{CloudEvents, an industry initiative that members of the CNCF Serverless Working Group contribute to, provides a consistent set of metadata to make events easier to work with for publishers, middleware, subscribers, and applications.}
+    \newline ( \cite{cncf_to_host_cloudevents_in_the_sandbox_2023} )
+\end{quote}
+\par
+CloudEvents at its core, defines a set of \textit{metadata}, which holds minimal information that can be used to route events. It also supports batching of multiple events in a single API calls. One of the major goal of CloudEvents is to increase interoperability and keep both event producer and consumer decoupled. This is achieved by prohibiting the routing, authorization, integrity and confidentiality information from the message format. This facilitates re-delivery of events or delivery over complex distributed or multi channel system.
+\par
+CloudEvents supports events in JSON format and support HTTP protocol binding. A JSON formatted CloudEvents , transported over HTTP, uses a "media type" \textit{application/cloudevents+json}. The CloudEvents specification using JSON formatting defines set of mandatory attributes. The two important attributes which is a key for Cloud-Native eventing is \textbf{type} and \textbf{data}.
+\newline
+\textbf{A sample CloudEvents:} 
+\begin{verbatim}
+[
+  {
+    "id": "b3ccc7e3-c1cb-49bf-b7c8-0d4e60990119",
+    "source": "/postman/cloudevent/azure/test",
+    "specversion": "1.0",
+    "data": {
+      "custID": "44458111",
+      "amount": 52200
+    },
+    "type": "InvoiceGenRequest",
+    "time": "2023-10-28T21:36:00.147165Z"
+  }
+]
+\end{verbatim}
+The attribute \textbf{data}, represents the application data object, that is transported across different applications. The data is parsed by default JSON parser. For parsing oher data formats an attribute \textbf{"datacontenttype"} is used. Most eventing framework provide their own event router, which are optimized to use any CloudEvent attribute like \textbf{type}.
+\par
+HTTP protocols is used to transport CloudEvent, to any HTTP supported endpoint, like RESTful web services, EventGrid, etc. Serverless framework, adopting CloudEvents,  parse the data before calling the Serverless function. Open-Source SDK are also available to create CloudEvent data.
+\pagebreak
+\par
+\textbf{Sample Curl Request to POST CloudEvent:}
+\begin{verbatim}
+curl POST 'https://eventmanagertopic.europe-1.eventgrid.azure.net/api/events' \
+    --header 'Content-Type: application/cloudevents-batch+json;charset=utf-8' \
+    --data '[
+          {
+            "id": "b3ccc7e3-c1cb-49bf-b7c8-0d4e60990119",
+            "source": "/postman/cloudevent/azure/test",
+            "specversion": "1.0",
+            "data": {
+              "custID": "44458111",
+              "amount": 52200
+            },
+            "type": "InvoiceGenRequest",
+            "time": "2023-10-28T21:36:00.147165Z"
+          }
+    ]'
+\end{verbatim}
 \end{flushleft}
 \pagebreak
 \section{Building and Deploying Serverless Function}
@@ -327,10 +380,16 @@ Azure SDK and CLI provide templates for creating Azure Functions, giving the cho
 \par
 Azure CLI archives and publishes the code to the File System under the Function App. The deployed Serverless function will remain in a dormant state (i.e. scaled to zero). The function performs a “Cold Start” when the event is called by Event Triggers.
 \end{flushleft}
-\subsection{Build Automation}
+\subsubsection{Build Automation}
 \begin{flushleft}
-There are various option to achieve automation in deployment of Azure Serverless Functions. Source Control integration connects the Function App to a GIT Repository, which will trigger deployment whenever updated code is committed and pushed. 
+There are various option to achieve automation in deployment of Azure Serverless Functions. Source Control integration connects the Function App to a GIT Repository, which will trigger deployment whenever an updated code is committed and pushed. 
 \end{flushleft}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.20]{images/AzureDeploymentCenter.PNG}
+    \caption{Azure Deployment GitHub Workflow}
+\end{figure}
+
 \subsection{Build and Deployment in Knative}
 \begin{flushleft}
 The Knative CLI offers a build utility which uses the project name and the image registry name to construct and push a fully qualified container image, in OCI format, for the function.  
@@ -610,12 +669,40 @@ All these stages will require unique stateless, Serverless, Event Driven Microse
 
 \subsection{Application Code base}
 We have 2 code bases one for Azure another for Knative. Both involves CloudEvent as intermediate data structure. The Logical code is same for Knative and Azure. Deployment process will be different.
-\hfill \break
+\par
 \textbf{Azure Function:}\\
-https://github.com/AINULX00159358/InvoiceManagerAzure \\
+\url{https://github.com/AINULX00159358/InvoiceManagerAzure} \\
 \textbf{Knative Code base}\\ 
-https://github.com/AINULX00159358/InvoiceMgrKnative\\
-\textbf{Test Scheduler code base}\\ https://github.com/AINULX00159358/InvoiceMgrTestScheduler\\
+\url{https://github.com/AINULX00159358/InvoiceMgrKnative}\\
+\textbf{Test Scheduler code base}\\ \url{https://github.com/AINULX00159358/InvoiceMgrTestScheduler} 
+
+\par
+"GitHub Action" automates the deployment of Azure Serverless Function by triggering the \textbf{GitHub Action}, whenever the source code is updated. The Github's \textit{"Action"} executes the Workflow YAML file located in .github \textbackslash workflows folder. The result of execution is a Zip deployment of Azure Functions to the Functional App. The \href{https://github.com/AINULX00159358/InvoiceManagerAzure/blob/main/.github/workflows/main_invoicemgrapp.yml}{workflow file} .
+
+\par
+Knative Serverless require docker image, as such Knative Build will create a docker image pushed to a public docker repository (, in this case it is \textit{docker.io}). This is automated using GutHub Workflow YAML file for "InvoiceMgrKnative", which is called by GitHub Action. The \href{https://github.com/AINULX00159358/InvoiceMgrKnative/blob/main/.github/workflows/buildAndPush.yml}{workflow YAML file}. 
+\par
+Knative deployment is done using a shell script, which calls Azure Function CLI. \href{https://github.com/AINULX00159358/InvoiceMgrKnative/blob/main/deployment.sh}{deployment.sh}
+
+\begin{verbatim}
+kn_service_create() {
+   kn service create $1 
+   --env STARTUP=$1 \  
+   --image x00159358/invoicemgrimg:latest \  
+   --pull-policy=IfNotPresent \
+   --label app.solution=invoicemgr \
+   --request cpu=500m,memory=512Mi \
+   --limit cpu=1000m,memory=1024Mi \
+   --scale-metric=rps \
+   --scale-target=150 \
+   --scale-utilization=95
+}
+# Function Name is provided as parameter.
+# For each function there is a Javascript file will be the env. param STARTUP
+# On start NPM will load the Javascript file passed in STARTUP env. variable
+\end{verbatim}
+
+The Knative Service will pull the docker image from the registry only once, since 'pull-policy' is set to 'IfNotPresent'. 
 
 \subsection{Application Design}
 The Use Case for Invoice Management System requires an Event Driven Application Design, where each stage managed and processed by stateless, singular function Microservices. 
@@ -662,24 +749,24 @@ Since request for generation of invoice was POST'ed to the Event Grid by the Tes
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\linewidth]{images/AzurePerfCapture/eventgrid-topic-latency.PNG}
+    \includegraphics[scale=0.20]{images/AzurePerfCapture/eventgrid-topic-latency.PNG}
     \caption{Metrics:Event Grid Latency Metrics}
     \label{event_grid_latency_metrics}
 \end{figure}
-\hfill \break
+\par
 The Max latency was between 2 seconds to 3 seconds, which could be attributed to cold start. This is echoed by the Latency experienced in Knative Function "invoicegenerator" , as shown in figure 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\linewidth]{images/AzurePerfCapture/invoicegenerator-event-latency.PNG}
+    \includegraphics[scale=0.20]{images/AzurePerfCapture/invoicegenerator-event-latency.PNG}
     \caption{Metrics:invoice generator Latency Metrics}
     \label{invoice-generator_latency_metrics}
 \end{figure}
-
+\par
 \subsection{Metrics Recorded for Knative Application}
 These metrics are captured from Prometheus, These startup metrics is evaluated by taking a delta of time in Seconds when POD is scheduled and achieved a ready state. This gives the "Cold-start" latency.
-\subsection{Metrics: First Initial Deployment}
+\subsection{Knative Metrics: First Initial Deployment}
 First initial deployment involves pulling docker images from the repository and start the pod. First deployment will also have time spent in creation of services and service-proxy, registration of public endpoints to registry.
-\pagebreak
+
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{images/Grafana/Grafana_Cold_Start_FirstDeployment.PNG}
@@ -688,7 +775,7 @@ First initial deployment involves pulling docker images from the repository and 
 \end{figure}
 \par
 Metrics shows higher cold Start time of 30 sec on first initial deployment, because of time spend in pulling image from Repository. Since we are using the same image for all other services, subsequent initialization of services will undergo "Warm Disk Start" with Cold Start time of 1 sec.
-\subsection{Metrics: Warm Disk Start}
+\subsection{Knative Metrics: Warm Disk Start}
 Once the image is pulled, subsequent deployment will reuse the image. This stage can be considered as "Warm Disk start".
 \pagebreak
 \begin{figure}[h]
@@ -742,6 +829,14 @@ The Knative code must be converted and pushed as docker image to the container r
 Kubernetes POD will pull the container image from the registry for initial deployment. Cost of downloading the container image do not effect "Cold Start" as long as Image Pull Policy is set to "IfNotPresent". 
 \par
 In Azure the function build, do not convert the code to a docker image, instead it stores the function files in its file system. The Functional code and runtime is loaded to the Container during execution.
+\begin{figure}[h]
+   \centering
+    \includegraphics[scale=1.0]{images/AzureDeploymentProcess.PNG}
+    \caption{Azure Deployment Process}
+    \label{fig:Deployment Process}
+\end{figure}
+
+
 
 \subsection{Azure's Hosting plan}
 Azure's Basic Serverless Hosting Plan is \textbf{"Consumption Plan"}. The Consumption plan scales application on traffic load factor. Customers are charged based on the compute resources utilized. The Compute instances for Functions hosts are dynamically added and removed based on the traffic load factor. Customers are also charged based on function execution.
