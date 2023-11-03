@@ -86,8 +86,13 @@
 
 
 %glossary for acronyms
-\usepackage[acronym,nonumberlist,toc,section=subsection,numberedsection=nolabel]{glossaries} 
+%\usepackage[acronym,nonumberlist,toc,section=subsection,numberedsection=nolabel]{glossaries} 
+\usepackage[toc,nonumberlist,numberedsection=nolabel]{glossaries}
+\renewcommand{\glossarypreamble}{\footnotesize}
+\renewcommand{\glsgroupskip}{}
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
 \makeglossaries
+\loadglsentries{glossaries.tex}
 
 %line spacing
 \linespread{1.25}

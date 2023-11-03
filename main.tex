@@ -22,7 +22,6 @@
         \vspace{0.5cm}
 
         {\Large\bfseries Knatve Vs Azure Function\par}
-          {\scshape\small DRAFT VERSION 1 (261023)\par}
         
         \vspace{0.5cm}
         {\Large\itshape Ainul Habib\par}
@@ -56,15 +55,22 @@ Ainul Habib\\
 \pagebreak
 
 \section*{Acknowledgements}
- .. TBD ..
+ 
+ I would like to express my sincere gratitude to my supervisor, Gary Clynch, for his invaluable guidance and support throughout the research process. His expertise and insights have been instrumental in shaping this thesis.
+
+I would also like to thank other faculties of the University and Programme, for their encouragement and support. Their feedback and suggestions have been invaluable in refining my research.
+
+I am grateful to my family for their unwavering support and encouragement throughout this journey. Their love and encouragement have been a constant source of inspiration.
+
+Finally, I would like to thank the participants of this study for their time and willingness to share their experiences. Without their participation, this research would not have been possible.
 \pagebreak
 
 %List of figures and tables, automatic from thesis.
 \listoffigures
 \pagebreak
  
-\listoftables
-\pagebreak
+% \listoftables
+% \pagebreak
 
 
 \tableofcontents
@@ -72,7 +78,7 @@ Ainul Habib\\
 
 \section*{Abstract}
 
-Serverless computing technology provided the technological infrastructure that made the evolution of cloud computing from VM(s) and containerized services (CaaS) to just a “Function as a Service” (FaaS). This paradigm shift brought simplification of Microservices design, and abstraction for infrastructure and server overheads.
+Serverless computing technology provided the technological infrastructure that made the evolution of cloud computing from \gls{VM}(s) and containerized services (\gls{CAAS}) to just a “Function as a Service” (\gls{FAAS}). This paradigm shift brought simplification of Microservices design, and abstraction for infrastructure and server overheads.
 
 Apart from all the goodies of Serverless, it provides a very real possibility for customers to get in a “locked-in” with a particular provider. 
 
@@ -83,7 +89,7 @@ Apart from all the goodies of Serverless, it provides a very real possibility fo
 
 The Serverless market needs a standardization, and unification by way of API offering and runtime contracts, to free developers from the fear of vendor lock-in. 
 
-Knative is an Open-Source, Cloud-Native, Serverless offering, that extends Kubernetes (, a widly accepted PAAS,) with Serverless features. 
+Knative is an Open-Source, Cloud-Native, Serverless offering, that extends Kubernetes (, a widly accepted \gls{PAAS},) with Serverless features. 
 
 Azure Functions is a cloud-based service that provides event-driven and compute-on-demand capabilities for various Azure or third-party services. 
 
@@ -95,7 +101,7 @@ Our results show that Azure Functions offers a more mature and integrated soluti
 \pagebreak
 
 \section*{Introduction}
-In recent years, the landscape of cloud-native application development has witnessed a significant transformation, driven by the need for enhanced scalability, rapid deployment, and cost efficiency. As organizations strive to deliver seamless digital experiences to their users, the utilization of Serverless computing and container-based solutions has emerged as a pivotal paradigm. Technologies that have gained prominence in this context are AWS Lambda, Azure Functions and Knative.
+In recent years, the landscape of cloud-native application development has witnessed a significant transformation, driven by the need for enhanced scalability, rapid deployment, and cost efficiency. As organizations strive to deliver seamless digital experiences to their users, the utilization of Serverless computing and container-based solutions has emerged as a pivotal paradigm. Technologies that have gained prominence in this context are \gls{AWS} Lambda, Azure Functions and Knative.
 
 Knative, an open-source project initiated by Google, offers a platform that abstracts away much of the complexities associated with deploying and managing containerized applications. It provides a set of building blocks for modern Serverless development, enabling developers to focus on code logic while benefiting from automatic scaling, event-driven architecture, and enhanced portability.
 
@@ -128,9 +134,10 @@ This is where Serverless offers a distinct advantage. Serverless technology stre
 Serverless computing's single-purpose APIs and web services make Microservices loosely coupled, scalable, and capable of delivering highly agile business solutions, easily and quickly.
 
 Using a Serverless framework developer’s energy and focus are more inclined towards business logic, and application flows and least towards any infrastructure or framework-related issues.
+\pagebreak
 \end{flushleft}
 \begin{quote}
-   \textit{Market share for Serverless architecture is slated to increase by roughly 25.70 \% by the end of 2035, adding expected revenue of approx 193 billion. }  ( \cite{GMI_3796_2022} )
+   \textit{Market share for Serverless architecture is slated to increase by roughly 25.70 \% by the end of 2035, adding expected revenue of approx 193 billion. } \\ ( \cite{GMI_3796_2022} )
 \end{quote}
 
 \begin{figure}[h]
@@ -147,10 +154,10 @@ Using a Serverless framework developer’s energy and focus are more inclined to
 \subsection{FAAS: Function As A Service}
 \par
 \justifying
-Function as a Service or FaaS is the basic building block of Serverless framework, (including AWS Lambda or Azure Function). 
+Function as a Service or \gls{FAAS} is the basic building block of Serverless framework, (including AWS Lambda or Azure Function). 
 \begin{quote}
 \begin{flushleft}
-\textit{Function as a service (FaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage application functionalities without the complexity of building and maintaining the infrastructure typically associated with developing and launching an app.}
+\textit{Function as a service is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage application functionalities without the complexity of building and maintaining the infrastructure typically associated with developing and launching an app.}
 \hfill \break
 (\cite{Wiki_function_as_a_service})
 \end{flushleft}
@@ -158,24 +165,24 @@ Function as a Service or FaaS is the basic building block of Serverless framewor
 
 \par
 \begin{flushleft}
-In FaaS, the cloud vendors are responsible for providing and managing the complexity of related application server, infrastructure, frameworks, security, and everything that the application needs to execute a specific function in an application. 
+In \gls{FAAS}, the cloud vendors are responsible for providing and managing the complexity of related application server, infrastructure, frameworks, security, and everything that the application needs to execute a specific function in an application. 
 
 \begin{quote}
 \textit{
-The “compute containers” executing your functions are ephemeral, with the FaaS provider creating and destroying them purely driven by runtime need. Most importantly, with FaaS the vendor handles all underlying resource provisioning and allocation—no cluster or VM management is required by the user at all.}\\ ( \cite{Roberts_Mike_2018} )
+The “compute containers” executing your functions are ephemeral, with the \gls{FAAS} provider creating and destroying them purely driven by runtime need. Most importantly, with \gls{FAAS} the vendor handles all underlying resource provisioning and allocation—no cluster or VM management is required by the user at all.}\\ ( \cite{Roberts_Mike_2018} )
 \end{quote}
 
-Following FaaS approach, Serverless offers on-demand functionality, which might live just for a single invocation. The cloud infrastructure will scale it to zero in preserve infrastructure and running costs. As such FaaS functionalities are opinionated stateless applications. This is a key difference between other architectural cloud-based offerings like containers and PaaS. 
- AWS Lambda is the first publicly cloud-based offering of FaaS or Serverless. 
+Following \gls{FAAS} approach, Serverless offers on-demand functionality, which might live just for a single invocation. The cloud infrastructure will scale it to zero in preserve infrastructure and running costs. As such \gls{FAAS} functionalities are opinionated stateless applications. This is a key difference between other architectural cloud-based offerings like containers and PaaS. 
+ \gls{AWS} Lambda is the first publicly cloud-based offering of \gls{FAAS} or Serverless. 
 
 \subsection{Functional Triggers}
-FaaS functionalities are typically triggered by events. Event Types are defined by the vendors. The vendors for Serverless are also responsible in managing connections from various message sources. For Example:  Azure Functions can react to Messaging Sources like Event-Grid, Event-Hub, Blob Storage or simple HTTP triggers. This approach fits perfectly with Microservices patterns of keeping the application event-driven and asynchronous.
+\gls{FAAS} functionalities are typically triggered by events. Event Types are defined by the vendors. The vendors for Serverless are also responsible in managing connections from various message sources. For Example:  Azure Functions can react to Messaging Sources like Event-Grid, Event-Hub, Blob Storage or simple \gls{HTTP} triggers. This approach fits perfectly with Microservices patterns of keeping the application event-driven and asynchronous.
 
 One important feature of Functional Trigger, offered by Serverless, is that the developers do not need to write any infrastructure or platform-related code in this application. The Serverless framework also manages the consumption of data and its conversion to the “Cloud Event” format.
 
-FaaS, will not require any application server to up in running, it can be “Scaled to Zero” if there is no event triggered. This difference, as stated earlier my Mark Roberts, becomes a key factor in making FaaS solutions cost-effective. FaaS applications are booted and scaled up when an event is triggered from a configured event source.
+\gls{FAAS}, will not require any application server to up in running, it can be “Scaled to Zero” if there is no event triggered. This difference, as stated earlier my Mark Roberts, becomes a key factor in making \gls{FAAS} solutions cost-effective. \gls{FAAS} applications are booted and scaled up when an event is triggered from a configured event source.
 
-However, the initial request in Faas has higher latency, (could be up to seconds,) than any other application platform. This “Cold restart” is an issue for FaaS and for Serverless offerings. The restart will depend on many factors, predominantly the application runtime and its runtime libraries. The effect of “cold restart” on the Quality of Service depends on type of traffic and applications. 
+However, the initial request in \gls{FAAS} has higher latency, (could be up to seconds,) than any other application platform. This “Cold restart” is an issue for \gls{FAAS} and for Serverless offerings. The restart will depend on many factors, predominantly the application runtime and its runtime libraries. The effect of “cold restart” on the Quality of Service depends on type of traffic and applications. 
 
 \subsection{Vendor Locking}
 In cloud computing, the \textit{"vendor lock-in"} is a major problem. When an organization adopts a specific cloud vendor, the migration of application and data to alternative providers becomes extremely difficult and highly expensive. The cloud vendor's framework and their adoption in application makes it incompatible with other vendors.
@@ -198,21 +205,21 @@ In reality, this claim is somewhat correct because existing cloud solutions are 
 \end{flushleft}
 \section{Cloud Native approach for Serverless}
 \begin{flushleft}
-Cloud Native Computing Foundation (CNCF) introduced Kubernetes to counter vendor lock-in issues created by cloud vendors offering PaaS. Kubernetes is a new platform allowing containerized applications to run in their own sandbox (POD), isolated in their namespace.
-Kubernetes is now accepted as the standard for PaaS. All major cloud vendors support the deployment of Kubernetes clusters in their cloud environments
+Cloud Native Computing Foundation (\gls{CNCF}) introduced Kubernetes to counter vendor lock-in issues created by cloud vendors offering \gls{PAAS}. Kubernetes is a new platform allowing containerized applications to run in their own sandbox (\gls{POD}), isolated in their namespace.
+Kubernetes is now accepted as the standard for \gls{PAAS}. All major cloud vendors support the deployment of Kubernetes clusters in their cloud environments
 \end{flushleft}
 \section{Knative }
 \begin{flushleft}
-The knative project was started by Google in 2018, with the aim to facilitate the deployment of a Serverless application using Kubernetes. Knative offers Serverless features like Scale to Zero, auto scalability, abstraction from PaaS and Infrastructure, and use of the eventing framework.
+The knative project was started by Google in 2018, with the aim to facilitate the deployment of a Serverless application using Kubernetes. Knative offers Serverless features like Scale to Zero, auto scalability, abstraction from \gls{PAAS} and Infrastructure, and use of the eventing framework.
 Knative, leveraging from the underlying Kubernetes platform, offers a portable runtime and open API, which makes Serverless applications fully Cloud Native. This increases interoperability and eases the transfer of applications from existing cloud providers to others.
 \begin{quote}
-    \textit{Knative is an open-source initiative aiming to provide a platform for developing container applications on top of the Kubernetes container orchestration platform. It offers ready-to-use components built with Kubernetes Custom Resource Definitions (CRDs) for developers to build, deploy, and scale their functions end-to-end from source code.} ( \cite{lin2019mitigating} )
+    \textit{Knative is an open-source initiative aiming to provide a platform for developing container applications on top of the Kubernetes container orchestration platform. It offers ready-to-use components built with Kubernetes Custom Resource Definitions (\gls{CRD}s) for developers to build, deploy, and scale their functions end-to-end from source code.} ( \cite{lin2019mitigating} )
 \end{quote}
 
 \subsection{Knative Function}
 Knative provides the framework for creating a Cloud Native Serverless function that is deployed to a Kubernetes cluster. There are three components to Knative (a) Build, (b) Serving, (c) Eventing.
 
-\textbf{Knative Build} component is responsible for converting the functional code to a container image, burning code or logic, the runtime, dependencies, configuration, and environment variable, etc. to OCI standard Image, pushing it to an internal Kubernetes registry.
+\textbf{Knative Build} component is responsible for converting the functional code to a container image, burning code or logic, the runtime, dependencies, configuration, and environment variable, etc. to \gls{OCI} standard Image, pushing it to an internal Kubernetes registry.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\linewidth]{images/knative-build.png}
@@ -223,7 +230,7 @@ Knative provides the framework for creating a Cloud Native Serverless function t
 \textbf{Knative Serving} is a request-driven provisioning component, responsible for auto-scaling Serverless containerized instances. It also takes care of load balancing. 
 Knative Serving also abstracts the Kubernetes service to administer the provisioning of new service versions. It also manages configuration updates, by rolling out a new immutable revision representing the updated functional state. Each service saves specific routing information to redirect traffic to a specific instance version.
 \begin{quote}
-   \textit{Knative Serving is ideal for running your application services inside Kubernetes by providing a more simplified deployment syntax with automated scale-to-zero and scale-out based on HTTP load. The Knative platform will manage your service’s deployments, revisions, networking, and scaling.} ( \cite{Sutter_Sampath_2020} )
+   \textit{Knative Serving is ideal for running your application services inside Kubernetes by providing a more simplified deployment syntax with automated scale-to-zero and scale-out based on \gls{HTTP} load. The Knative platform will manage your service’s deployments, revisions, networking, and scaling.} ( \cite{Sutter_Sampath_2020} )
 \end{quote}
 \par
 \includegraphics[]{images/knative-serving.png}
@@ -291,7 +298,7 @@ The developers leverage for Knative API and Eventing platform to consume events 
 \pagebreak
 \section{Azure Function}
 \begin{flushleft}
-\textbf{Azure Function} is a Serverless offering by Microsoft. It allows developers to deploy their FaaS application on Azure Cloud using a Pay-as-you-go model. It followed all the features of Serverless, like the scale to zero, horizontal scalability, complete abstraction from the Platform, and eventing framework. It offers SDK and CLI to build and Deploy Serverless applications to the cloud, using various programming languages and frameworks like Java, .Net, NodeJS, etc.
+\textbf{Azure Function} is a Serverless offering by Microsoft. It allows developers to deploy their \gls{FAAS} application on Azure Cloud using a Pay-as-you-go model. It followed all the features of Serverless, like the scale to zero, horizontal scalability, complete abstraction from the Platform, and eventing framework. It offers \gls{SDK} and \gls{CLI} to build and Deploy Serverless applications to the cloud, using various programming languages and frameworks like Java, .Net, NodeJS, etc.
 
 Azure Functions adopts the Azure Eventing framework to provide a comprehensive set of event-driven triggers and bindings. This binding connects Azure functions to other services without having to write extra code, providing the capability of Azure function to be asynchronous and event-driven.
 
@@ -320,16 +327,16 @@ Azure Eventing framework supports event-sourcing and event-subscription. It cons
 
 \section{CloudEvents}
 \begin{flushleft}
-CloudEvents is a common data format or schema to defining "events". It aims to provide interoperability across various cloud platform and services. It is an Open-source and maintained by CNCF Serverless working Group.
+CloudEvents is a common data format or schema to defining "events". It aims to provide interoperability across various cloud platform and services. It is an Open-source and maintained by \gls{CNCF} Serverless working Group.
 \par
 \begin{quote}
-    \textit{CloudEvents, an industry initiative that members of the CNCF Serverless Working Group contribute to, provides a consistent set of metadata to make events easier to work with for publishers, middleware, subscribers, and applications.}
+    \textit{CloudEvents, an industry initiative that members of the \gls{CNCF} Serverless Working Group contribute to, provides a consistent set of metadata to make events easier to work with for publishers, middleware, subscribers, and applications.}
     \newline ( \cite{cncf_to_host_cloudevents_in_the_sandbox_2023} )
 \end{quote}
 \par
 CloudEvents at its core, defines a set of \textit{metadata}, which holds minimal information that can be used to route events. It also supports batching of multiple events in a single API calls. One of the major goal of CloudEvents is to increase interoperability and keep both event producer and consumer decoupled. This is achieved by prohibiting the routing, authorization, integrity and confidentiality information from the message format. This facilitates re-delivery of events or delivery over complex distributed or multi channel system.
 \par
-CloudEvents supports events in JSON format and support HTTP protocol binding. A JSON formatted CloudEvents , transported over HTTP, uses a "media type" \textit{application/cloudevents+json}. The CloudEvents specification using JSON formatting defines set of mandatory attributes. The two important attributes which is a key for Cloud-Native eventing is \textbf{type} and \textbf{data}.
+CloudEvents supports events in \gls{JSON} format and support \gls{HTTP} protocol binding. A \gls{JSON} formatted CloudEvents , transported over \gls{HTTP}, uses a "media type" \textit{application/cloudevents+json}. The CloudEvents specification using \gls{JSON} formatting defines set of mandatory attributes. The two important attributes which is a key for Cloud-Native eventing is \textbf{type} and \textbf{data}.
 \newline
 \textbf{A sample CloudEvents:} 
 \begin{verbatim}
@@ -347,9 +354,9 @@ CloudEvents supports events in JSON format and support HTTP protocol binding. A 
   }
 ]
 \end{verbatim}
-The attribute \textbf{data}, represents the application data object, that is transported across different applications. The data is parsed by default JSON parser. For parsing oher data formats an attribute \textbf{"datacontenttype"} is used. Most eventing framework provide their own event router, which are optimized to use any CloudEvent attribute like \textbf{type}.
+The attribute \textbf{data}, represents the application data object, that is transported across different applications. The data is parsed by default \gls{JSON} parser. For parsing oher data formats an attribute \textbf{"datacontenttype"} is used. Most eventing framework provide their own event router, which are optimized to use any CloudEvent attribute like \textbf{type}.
 \par
-HTTP protocols is used to transport CloudEvent, to any HTTP supported endpoint, like RESTful web services, EventGrid, etc. Serverless framework, adopting CloudEvents,  parse the data before calling the Serverless function. Open-Source SDK are also available to create CloudEvent data.
+\gls{HTTP} protocols is used to transport CloudEvent, to any \gls{HTTP} supported endpoint, like RESTful web services, EventGrid, etc. Serverless framework, adopting CloudEvents,  parse the data before calling the Serverless function. Open-Source \gls{SDK} are also available to create CloudEvent data.
 \pagebreak
 \par
 \textbf{Sample Curl Request to POST CloudEvent:}
@@ -376,9 +383,9 @@ curl POST 'https://eventmanagertopic.europe-1.eventgrid.azure.net/api/events' \
 
 \subsection{Building and Deploying in Azure}
 \begin{flushleft}
-Azure SDK and CLI provide templates for creating Azure Functions, giving the choice of programming language and event schema.
+Azure \gls{SDK} and \gls{CLI} provide templates for creating Azure Functions, giving the choice of programming language and event schema.
 \par
-Azure CLI archives and publishes the code to the File System under the Function App. The deployed Serverless function will remain in a dormant state (i.e. scaled to zero). The function performs a “Cold Start” when the event is called by Event Triggers.
+Azure \gls{CLI} archives and publishes the code to the File System under the Function App. The deployed Serverless function will remain in a dormant state (i.e. scaled to zero). The function performs a “Cold Start” when the event is called by Event Triggers.
 \end{flushleft}
 \subsubsection{Build Automation}
 \begin{flushleft}
@@ -392,7 +399,7 @@ There are various option to achieve automation in deployment of Azure Serverless
 
 \subsection{Build and Deployment in Knative}
 \begin{flushleft}
-The Knative CLI offers a build utility which uses the project name and the image registry name to construct and push a fully qualified container image, in OCI format, for the function.  
+The Knative \gls{CLI} offers a build utility which uses the project name and the image registry name to construct and push a fully qualified container image, in \gls{OCI} format, for the function.  
 The container image has the application's language specific runtime and functional code.
 \hfill\break
 Knative Serving deploys the container image as Kubernetes application, pulling the image from registry for first pod initialization.
@@ -406,7 +413,7 @@ func build --registry docker.io/x00159358 \
 \end{verbatim}
 
 \par
-Azure function do not create a containerized image. Azure CLI provide utility to package the artifacts and archive to Azure File Storage. Azure functional loads the application runtime and code into memory and executes it.
+Azure function do not create a containerized image. Azure \gls{CLI} provide utility to package the artifacts and archive to Azure File Storage. Azure functional loads the application runtime and code into memory and executes it.
 
 \end{flushleft}
 \pagebreak
@@ -433,16 +440,16 @@ Azure Functions has a longer cold start time, because of its uses of a \textbf{D
 \par
 In short, the function is only created and scaled when needed. This can lead to longer cold start times, especially for functions which is not called frequently.
 \par
-Serverless offering from cloud vendors like AWS Lambda use Static Provisioning Model, which ensures that a minimum functional instance  are always running, reducing the cold start time even for less frequently called Functions.
+Serverless offering from cloud vendors like \gls{AWS} Lambda use Static Provisioning Model, which ensures that a minimum functional instance  are always running, reducing the cold start time even for less frequently called Functions.
 \par
 There are many factors which effect the latency of the cold start when using Cloud Vendors like Azure. Programming Runtime environment plays a significant role in Cold Start of Serverless functions.
 
 The Research study titled "An Investigation of the Impact of Language Runtime on the Performance and Cost of
-Serverless Functions", conducted series of tests and analysis measuring Cold and Warm Startup latency of AWS and Azure Serverless functions, using NodeJS and DotNet runtimes. 
+Serverless Functions", conducted series of tests and analysis measuring Cold and Warm Startup latency of \gls{AWS} and Azure Serverless functions, using NodeJS and DotNet runtimes. 
 
 \begin{quote}
     Test was conducted using : \newline
-     \textit{ " There were a total of 144 Cold-Start tests (for both runtimes) over a 6-day period. These were performed at the same 1-hour intervals as in AWS Lambda testing. "} 
+     \textit{ " There were a total of 144 Cold-Start tests (for both runtimes) over a 6-day period. These were performed at the same 1-hour intervals as in \gls{AWS} Lambda testing. "} 
      \begin{flushright}
          ( \cite{8605773} )
      \end{flushright} 
@@ -461,7 +468,7 @@ Serverless Functions", conducted series of tests and analysis measuring Cold and
 \subsection{Knative Cold Restart}
 Knative Serving instructs the Kube API to provision the Serverless application, when it needs to scale up the instances. 
 
-There are different distinct stages of execution leading to provisioning of the POD. 
+There are different distinct stages of execution leading to provisioning of the \gls{POD}. 
 \newline
 \textbf{Cold Start:} When the application is being started for the first time
 \newline
@@ -542,7 +549,7 @@ There are a number of ways to reduce Cold Stat-up Latency ( scale from zero late
         \item Use small size of Base image e.g. "alpine base image".
         \item Keep dependencies and additional libraries to base image to bare minimum.
         \item Use Stratergy to do a lazy pull of image
-        \item Avoid POD's image pull policy as "Always"
+        \item Avoid \gls{POD}'s image pull policy as "Always"
         \item Use specific image digest rather than using the latest tag
         \item Cache image to all nodes.
         \item try pull image to Kubernetes docker registry through different deployment channel
@@ -572,9 +579,9 @@ The interesting case is when scaling from Zero to One:
 \item since the Pods are scaled to zero, requests are routed to the Activator. (i.e. Inactive Case).
 \item Activator passes metrics to Autoscaler which obliged for scaling up the Pods, (from zero to 1).
 \item Activator calls Knative Serving Deployment to spin up a pod, with all its containers and sidecars. 
-\item Pod's cluster IP is now updated in Serverless Services.
-\item Once Pods are scaled above zero, Serverless Services updates the Route, disconnecting the Autoscaler. The traffic is now routed directly to Pod's service Proxy.
-\item The Knative Pod's sidecars and Envoy provide metrics which is now scared to Autoscaler directly, so that it can now decide to need to scale further based on incoming traffic.
+\item \gls{POD}'s cluster IP is now updated in Serverless Services.
+\item Once Pods are scaled above zero, Serverless Services updates the Route, disconnecting the Autoscaler. The traffic is now routed directly to \gls{POD}'s service Proxy.
+\item The Knative \gls{POD}'s sidecars and Envoy provide metrics which is now scared to Autoscaler directly, so that it can now decide to need to scale further based on incoming traffic.
 \end{itemize}
 \end{flushleft}
 \begin{quote}
@@ -621,7 +628,7 @@ There are at-least 14 different core components, that must be deployed as part o
 \pagebreak
 \section{Developing and Event Driven Application}
 \begin{flushleft}
-Azure Eventing framework provide a production grade messaging service like Event-Grid and Event-Hubs, which supports easy integration to Azure Functions. Event Grid enables clients to publish and subscribe to messages over the MQTT, HTTP and other protocols. Azure Messaging Service also allows subscription and filtering of events and triggers to registered endpoint or Sink. The Sink can by Azure Serverless Function, Azure Webhook and Services. 
+Azure Eventing framework provide a production grade messaging service like Event-Grid and Event-Hubs, which supports easy integration to Azure Functions. Event Grid enables clients to publish and subscribe to messages over the MQTT, \gls{HTTP} and other protocols. Azure Messaging Service also allows subscription and filtering of events and triggers to registered endpoint or Sink. The Sink can by Azure Serverless Function, Azure Webhook and Services. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.00\linewidth]{images/general-event-grid.png}
@@ -682,7 +689,7 @@ We have 2 code bases one for Azure another for Knative. Both involves CloudEvent
 \par
 Knative Serverless require docker image, as such Knative Build will create a docker image pushed to a public docker repository (, in this case it is \textit{docker.io}). This is automated using GutHub Workflow YAML file for "InvoiceMgrKnative", which is called by GitHub Action. The \href{https://github.com/AINULX00159358/InvoiceMgrKnative/blob/main/.github/workflows/buildAndPush.yml}{workflow YAML file}. 
 \par
-Knative deployment is done using a shell script, which calls Azure Function CLI. \href{https://github.com/AINULX00159358/InvoiceMgrKnative/blob/main/deployment.sh}{deployment.sh}
+Knative deployment is done using a shell script, which calls Azure Function \gls{CLI}. \href{https://github.com/AINULX00159358/InvoiceMgrKnative/blob/main/deployment.sh}{deployment.sh}
 
 \begin{verbatim}
 kn_service_create() {
@@ -702,26 +709,26 @@ kn_service_create() {
 # On start NPM will load the Javascript file passed in STARTUP env. variable
 \end{verbatim}
 
-The Knative Service will pull the docker image from the registry only once, since 'pull-policy' is set to 'IfNotPresent'. 
+The Knative Service will pull the docker image from the registry only once, since 'pull-policy' is set to '\gls{IfNotPresent}'. 
 
 \subsection{Application Design}
 The Use Case for Invoice Management System requires an Event Driven Application Design, where each stage managed and processed by stateless, singular function Microservices. 
  \par
 Invoice status will be updated in every stage. The cloud-event's attribute "Type" will be mapped to Invoice Status. Cloud-Event's attribute "Type" is used for routing and filtering events to specific Microservices, by the configured Trigger.
 \par
-Event Grid or Knative broker (with event channel) with its Trigger and filter will act as Orchestration of invoice data to different Microservices. Both Event Grid and Knative broker exposes an web accessible URL, allowing client to POST Cloud-Event data using HTTP protocol.
+Event Grid or Knative broker (with event channel) with its Trigger and filter will act as Orchestration of invoice data to different Microservices. Both Event Grid and Knative broker exposes an web accessible URL, allowing client to POST Cloud-Event data using \gls{HTTP} protocol.
 \par
 Serverless application, perfectly fits the Microservices requirement. It is stateless, isolated, event driven and only process single function. Their endpoints are exposed and configured in the Event Triggers, with Invoice Status acting as a filter. 
 \hfill\break
 Serverless offering from either Knative or Azure can be utilized for this design.
 
 \subsubsection{Test Code}
-A Test Code is deployed as Simple Kubernetes Pod, which will start by POSTing client Invoice Request to the Broker Endpoint at different TPS like 30, 60, 100 etc.
+A Test Code is deployed as Simple Kubernetes \gls{POD}, which will start by POSTing client Invoice Request to the Broker Endpoint at different \gls{TPS} like 30, 60, 100 etc.
 
 \subsection{Execution of Test code}
 A Test Code is created to request generation of Invoice by making and REST calls to Knative Broker or Azure Event-Grid, using cloudevent schema. The test code is capable of sending Cloudevent at the required rate to simulate regression. 
 \par
-The Test code is packaged and pushed as Container Image, in OCI format, to the Docker repository. The Test application can be deployed as Kubernetes POD or Azure Container Application, with required arguments and properties.
+The Test code is packaged and pushed as Container Image, in \gls{OCI} format, to the Docker repository. The Test application can be deployed as Kubernetes \gls{POD} or Azure Container Application, with required arguments and properties.
 \end{flushleft}
 \pagebreak
 
@@ -739,7 +746,7 @@ Azure Portal provides options to view live metrics of Azure Functional App, as s
 \end{figure}
 \pagebreak
 \par
-Figure ~\ref{azure_live_metrics} , shows Azure Function App is subjected to average 400 TPS request. There no failure of request. Request latency for each calls was between 15 to 20 milliseconds.
+Figure ~\ref{azure_live_metrics} , shows Azure Function App is subjected to average 400 \gls{TPS} request. There no failure of request. Request latency for each calls was between 15 to 20 milliseconds.
 \hfill \break
 The metrics shows average resource usage for all Serverless containers initialized during the Test.
 \break
@@ -763,7 +770,7 @@ The Max latency was between 2 seconds to 3 seconds, which could be attributed to
 \end{figure}
 \par
 \subsection{Metrics Recorded for Knative Application}
-These metrics are captured from Prometheus, These startup metrics is evaluated by taking a delta of time in Seconds when POD is scheduled and achieved a ready state. This gives the "Cold-start" latency.
+These metrics are captured from Prometheus, These startup metrics is evaluated by taking a delta of time in Seconds when \gls{POD} is scheduled and achieved a ready state. This gives the "Cold-start" latency.
 \subsection{Knative Metrics: First Initial Deployment}
 First initial deployment involves pulling docker images from the repository and start the pod. First deployment will also have time spent in creation of services and service-proxy, registration of public endpoints to registry.
 
@@ -797,20 +804,20 @@ Metrics shows reduced cold Start time to one seconds, compared to Cold Start dur
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{images/Grafana/Grafana_Autoscaling_Panic.PNG}
-    \caption{Knative : Pod Auto scaling in Panic mode}
+    \caption{Knative : \gls{POD} Auto scaling in Panic mode}
     \label{fig:Pod_Autoscaling_panic}
 \end{figure}
 \hfill\break
-The default setting for Autoscaler in Knative is "request concurrency", but for test it was modified to "request per second" (RPS).  When the RPS touched the 70\% of the threshold value (i.e 200), Autoscaler went in a panic state, requesting Knative Serving to spin more POD(s).   
+The default setting for Autoscaler in Knative is "request concurrency", but for test it was modified to "request per second" (\gls{RPS}).  When the \gls{RPS} touched the 70\% of the threshold value (i.e 200), Autoscaler went in a panic state, requesting Knative Serving to spin more \gls{POD}(s).   
 \break
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{images/Grafana/Grafana_Autoscaling_Knative_Serving_SinglePod}
-    \caption{Knative : Pod Auto scaling in Knative Serving mode}
+    \caption{Knative : \gls{POD} Auto scaling in Knative Serving mode}
     \label{fig:Pod_Autoscaling_KnativeServing}
 \end{figure}
 \hfill\break
-Above figure (\ref{fig:Pod_Autoscaling_KnativeServing} ) shows how desired pod for Knative Function (invoicegenerator) increased from one to two, then stabilized back to 1 when traffic normalized. It increased to 2 again when RPS increased back to 140+.
+Above figure (\ref{fig:Pod_Autoscaling_KnativeServing} ) shows how desired pod for Knative Function (invoicegenerator) increased from one to two, then stabilized back to 1 when traffic normalized. It increased to 2 again when \gls{RPS} increased back to 140+.
     
 \end{flushleft}
 \pagebreak
@@ -826,7 +833,7 @@ Infrastructure cost of setting a proper Knative environment which can support hi
 
 The Knative code must be converted and pushed as docker image to the container registry. 
 \hfill\break
-Kubernetes POD will pull the container image from the registry for initial deployment. Cost of downloading the container image do not effect "Cold Start" as long as Image Pull Policy is set to "IfNotPresent". 
+Kubernetes \gls{POD} will pull the container image from the registry for initial deployment. Cost of downloading the container image do not effect "Cold Start" as long as Image Pull Policy is set to "\gls{IfNotPresent}". 
 \par
 In Azure the function build, do not convert the code to a docker image, instead it stores the function files in its file system. The Functional code and runtime is loaded to the Container during execution.
 \begin{figure}[h]
@@ -855,7 +862,7 @@ A proper mix of Knative application, can offer better Serverless performance at 
 \par
 Knative is based on stateless Microservices approach. Business transaction and data is processed by various steps, involving different stateless Microservices. Since stateless Microservices do not preserve state, so do the transaction context. IT teams need to provide their own means to preserve the context which can add to cost of transaction and latency.
 \par
-The area of responsibility of SRE increases when using Knative framework. The SRE's are also responsible for containers, Kubernetes, Service Mesh (like Istio) and Knative Eventing Components (like  Brokers or channels). SRE's are free from these challenges when using Serverless in public cloud.
+The area of responsibility of \gls{SRE} increases when using Knative framework. The \gls{SRE}'s are also responsible for containers, Kubernetes, Service Mesh (like Istio) and Knative Eventing Components (like  Brokers or channels). \gls{SRE}'s are free from these challenges when using Serverless in public cloud.
 \par
 If the companies already have Kubernetes and "Service Mesh" in their Technology Stack, Knative is just an added extension on it. So for those companies Knative offers a better and affordable solution than their Serverless public cloud provider alternatives.
 \par
@@ -865,16 +872,16 @@ Azure customer using Serverless Functions, under \textit{Consumption Plan}, is b
  
 Billing for Azure Function Application is subject to the total number of requested processing for all functions in a month. Execution is counted for each time a function is called by the event trigger. There are free exemptions, like 1 million executions per month is free
 \par
-Customers choose \textit{Premium Plan} for better scalability and no cold-start, with some enhancement in performance. Azure's \textit{Premium plan} for Function App is based on consumption of Core vCPU (in seconds) and memory allocation across the running instances.
+Customers choose \textit{Premium Plan} for better scalability and no cold-start, with some enhancement in performance. Azure's \textit{Premium plan} for Function App is based on consumption of Core \gls{vCPU} (in seconds) and memory allocation across the running instances.
 \hfill\break
 Execution charges are exempted under Premium Plan, but it will require at-least one instance to be live and running at all times.
 \par
-Different pricing tires are available for Premium Plan customers, which provides different combination of vCPU and Memory allocated.
+Different pricing tires are available for Premium Plan customers, which provides different combination of \gls{vCPU} and Memory allocated.
 \begin{itemize}
-    \item \textbf{V2}: 4 vCPU,  14 GB RAM \$0.532/hour
-    \item \textbf{V3}: 8 vCPU,  28 GB RAM \$1.064/hour
-    \item \textbf{V4}: 16 vCPU, 56 GB RAM \$2.128/hour
-    \item \textbf{V5}: 32 vCPU,112 GB RAM \$4.256/hour
+    \item \textbf{V2}: 4 \gls{vCPU},  14 GB \gls{RAM} \$0.532/hour
+    \item \textbf{V3}: 8 \gls{vCPU},  28 GB \gls{RAM} \$1.064/hour
+    \item \textbf{V4}: 16 \gls{vCPU}, 56 GB \gls{RAM} \$2.128/hour
+    \item \textbf{V5}: 32 \gls{vCPU},112 GB \gls{RAM} \$4.256/hour
 \end{itemize}
 \par
 \end{flushleft}
@@ -883,7 +890,7 @@ Different pricing tires are available for Premium Plan customers, which provides
 \begin{flushleft}
 Knative is a Cloud-Native and Open-Source alternative to traditional Serverless offered by public cloud providers like Azure Functions.
 \par
-Knative becomes a better alternative, for companies who have Kubernetes and Service Mesh in their technology stack, and has an active SRE team managing the Kubernetes Cluster. 
+Knative becomes a better alternative, for companies who have Kubernetes and Service Mesh in their technology stack, and has an active \gls{SRE} team managing the Kubernetes Cluster. 
 \par
 Azure Function becomes a choice when companies want to avoid the management overhead of Kubernetes Cluster and Service Mesh. In production, it is recommended to use the "Premium plan" to avoid cold start, which comes with added cost to the infrastructure. 
 \par
@@ -895,4 +902,6 @@ To summarize, Both Knative and Azure Function are better solutions for Microserv
 
 %prints bibliography from bibliography file.
 \printbibliography
+\clearpage
+\printglossary
 \end{document}
