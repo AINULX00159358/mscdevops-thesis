@@ -56,7 +56,7 @@ Ainul Habib\\
 
 \section*{Acknowledgements}
  
- I would like to express my sincere gratitude to my supervisor, Gary Clynch, for his invaluable guidance and support throughout the research process. His expertise and insights have been instrumental in shaping this thesis.
+ I would like to express my sincere gratitude to my supervisor, Gary Clynch, for his guidance and support throughout the research process. His expertise and insights have been instrumental in shaping this thesis.
 
 I would also like to thank other faculties of the University and Programme, for their encouragement and support. Their feedback and suggestions have been invaluable in refining my research.
 
@@ -133,7 +133,7 @@ Cloud computing does offer some relief, by taking away the pain of managing the 
 
 Even the best Microservices solution cannot fulfill all business agility. Faster and quick-rolling out of business changes to market on time, is still a challenge for the architects and managers. 
 
-This is where Serverless offers a distinct advantage. Serverless technology streamlines the complexity of traditional systems by eliminating the need to run application servers and manage infrastructure. Developers leverage from Serverless framework, focusing on the core business problem, rather than worrying about infrastructure issues and bottlenecks.
+This is where Serverless offers a distinct advantage. Serverless technology streamlines the complexity of traditional systems by eliminating the requirement of running application servers and the infrastructure. Developers leverage from Serverless framework, focusing on the core business problem, rather than worrying about infrastructure issues and bottlenecks.
 
 Serverless computing's single-purpose APIs and web services make Microservices loosely coupled, scalable, and capable of delivering highly agile business solutions, easily and quickly.
 
@@ -864,7 +864,10 @@ In production it is recommended to use \textbf{Premium Plan}, which provided lar
 \begin{flushleft}
 When there is a large number of Serverless function, any inflation in trigger caused by high or sudden bust of traffic may exponentially increase Serverless cost due to sudden increase in resource utilization and scaling of instances. This against the traditional container applications, which had fixed number of instances, keeping the processing cost constant.
 \par
-A proper mix of Knative application, can offer better Serverless performance at lower cost than public cloud. But wrong application or poorly sized resource pool can destroy the benefit.
+By leveraging a mix of Knative applications, businesses can achieve better performance and lower costs compared to public cloud solutions. \\
+This is because Knative is designed to work with Kubernetes, which provides a flexible and scalable platform for deploying containerized workloads.\\
+
+But wrong application or poorly sized resource pool can destroy the benefit provided by Knative.
 \par
 Knative is based on stateless Microservices approach. Business transaction and data is processed by various steps, involving different stateless Microservices. Since stateless Microservices do not preserve state, so do the transaction context. IT teams need to provide their own means to preserve the context which can add to cost of transaction and latency.
 \par
