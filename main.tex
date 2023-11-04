@@ -192,9 +192,9 @@ However, the initial request in \gls{FAAS} has higher latency, (could be up to s
 In cloud computing, the \textit{"vendor lock-in"} is a major problem. When an organization adopts a specific cloud vendor, the migration of application and data to alternative providers becomes extremely difficult and highly expensive. The cloud vendor's framework and their adoption in application makes it incompatible with other vendors.
  The \textit{Vendor Lock-in} occurs in various ways: 
  \begin{itemize}
-     \item by designing a system incompatible with software developed by other vendors
-     \item by using proprietary standards or closed architectures that lack interoperability with other applications
-     \item by licensing the software under exclusive conditions
+     \item by design: System design which is incompatible with software developed by other vendors.
+     \item by using Closed architectures: Software developed using proprietary standards and  architectures that lacks interoperability with other applications by other vendors.
+     \item by licensing: Software is licensed under under exclusive, non-flexible conditions.
  \end{itemize}
 
  Vendor lock-in discourages organizations in adopting new and emerging cloud technologies like Serverless. There is no standardization of Serverless design, data structure and code that could favour an easy transition from one cloud vendor to other, without an expensive redesign of the entire application. 
@@ -205,7 +205,9 @@ Existing cloud computing solutions for enterprises have not been built with inte
 ( \cite{Opara-Martins-2014} )
 \end{quote}
 \par 
-In reality, this claim is somewhat correct because existing cloud solutions are tightly coupled to the proprietary technology they were designed for, consequently, locking customers into a single cloud infrastructure, platform, or service; preventing interoperability and portability of data or software created by them. 
+Existing cloud technologies, offered by proprietary vendors, are designed to work with specific technologies, which can limit the ability of customers to switch between different cloud providers.
+\\
+This leads to a \textit{"vendor lock-in"} to specific provider and their technology. This  situation can be problematic for businesses that want to maintain flexibility and avoid being tied to a single provider.
 \end{flushleft}
 \section{Cloud Native approach for Serverless}
 \begin{flushleft}
